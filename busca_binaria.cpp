@@ -1,3 +1,5 @@
+#include "busca_binaria.h"
+
 int BuscaBinaria(int arr[], int n, int x){
     int esquerda = 0;
     int direita = n -1;
