@@ -1,6 +1,6 @@
 #include "busca_sequencial.h"
 
-int buscaSequencial(int arr[], int n, int x){
+int BuscaSequencial (int arr[], int n, int x){
   for(int i = 0; i < n; i++){
     if(arr[i] == x){
       return i;

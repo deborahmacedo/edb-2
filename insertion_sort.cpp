@@ -1,4 +1,6 @@
-void insertionSort(int arr[], int n){
+#include "insertion_sort.hpp"
+
+void InsertionSort (int arr[], int n){
   for(int i = 1; i < n; i++){
     int j = i - 1;
     int chave = arr[i];
