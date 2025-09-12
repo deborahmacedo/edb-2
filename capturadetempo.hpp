@@ -2,26 +2,33 @@
 #define CAPTURA_DE_TEMPO_HPP
 
 #include <chrono>
-#include <iostream>
 
-// Contador de tempo para funções de ordenação que recebem (int arr[], int n)
+// Ordenação
 template <typename Func>
-auto contador_ordenacao(Func func, int arr[], int n) {
+long long contador_ordenacao(Func func, int arr[], int n) {
     auto start = std::chrono::steady_clock::now();
-    func(arr, n);  // chama a função de ordenação
+    func(arr, n);
     auto end = std::chrono::steady_clock::now();
 
-    return std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+    return std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
 }
 
-// Contador de tempo para funções de busca que recebem (int arr[], int n, int x)
+// Busca
 template <typename Func>
-auto contador_busca(Func func, int arr[], int n, int x) {
+long long contador_busca(Func func, int arr[], int n, int x) {
     auto start = std::chrono::steady_clock::now();
-    func(arr, n, x);  // chama a função de busca
+    func(arr, n, x);
     auto end = std::chrono::steady_clock::now();
 
-    return std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+    return std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
 }
 
-#endif 
+#endif
+template <typename Func>
+long long medirTempo(Func func, int arr[], int n) {
+    auto start = std::chrono::steady_clock::now();
+    func(arr, n);
+    auto end = std::chrono::steady_clock::now();
+
+    return std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+}

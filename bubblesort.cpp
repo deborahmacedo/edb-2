@@ -1,4 +1,5 @@
-#include "bubblesort.h"
+#include "bubblesort.hpp"
+#include <iostream>
 
 void BubbleSort (int arr[], int n) {
     for(int i = 0; i < n - 1; i++) {
@@ -10,4 +11,10 @@ void BubbleSort (int arr[], int n) {
             }
         }
     }
+
+    std::cout << "Vetor ordenado: ";
+    for (int i = 0; i < n; i++) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
 }
