@@ -12,8 +12,8 @@ void InsertionSort (int arr[], int n){
     }
     arr[j+1] = chave;
   }
-  std::cout << "Vetor ordenado com Insertion Sort: " << std::endl;
+  /*std::cout << "Vetor ordenado com Insertion Sort: " << std::endl;
     for (int i = 0; i < n; i++) {
         std::cout << arr[i] << " ";
-    }
+    }*/
 }
