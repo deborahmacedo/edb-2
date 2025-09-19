@@ -23,15 +23,15 @@ void pooularVetorComValoresAleatorios(int arr[], int n, int min, int max) {
 
 int main(){
     
-    int array_tempo_insertion[6];
-    int array_tempo_bubble[6];
-    int array_tempo_busca_sequencial[6];
-    int array_tempo_busca_binaria[6];
+    int array_tempo_insertion[10];
+    int array_tempo_bubble[10];
+    int array_tempo_busca_sequencial[10];
+    int array_tempo_busca_binaria[10];
 
-    std::cout << "algoritmo,n,tempo_medio" << std::endl;
+    std::cout << "algoritmo,n,tempo" << std::endl;
         //POPULAR VETOR
-        std::vector<int> tamanhos = {10000, 20000, 50000, 60000, 80000, 100000};
-       for(int j = 0; j < 6; ++j) {
+        std::vector<int> tamanhos = {10000, 20000, 30000, 40000, 50000, 60000,70000, 80000, 90000, 100000};
+       for(int j = 0; j < 10; ++j) {
 
         int tamanho = tamanhos[j]; // Tamanho do vetor
 

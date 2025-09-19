@@ -1,0 +1,95 @@
+algoritmo,n,tempo
+
+InsertionSort,10000, 1659
+
+BubbleSort,10000, 157272
+
+SequentialSearch,10000, 4
+
+BinarySearch,10000, 1243
+
+
+InsertionSort,20000, 6686
+
+BubbleSort,20000, 779028
+
+SequentialSearch,20000, 8
+
+BinarySearch,20000, 1355
+
+
+InsertionSort,30000, 16297
+
+BubbleSort,30000, 1923996
+
+SequentialSearch,30000, 12
+
+BinarySearch,30000, 1340
+
+
+InsertionSort,40000, 29616
+
+BubbleSort,40000, 3565513
+
+SequentialSearch,40000, 16
+
+BinarySearch,40000, 1368
+
+
+InsertionSort,50000, 47119
+
+BubbleSort,50000, 5668138
+
+SequentialSearch,50000, 19
+
+BinarySearch,50000, 1243
+
+
+InsertionSort,60000, 69577
+
+BubbleSort,60000, 8195788
+
+SequentialSearch,60000, 23
+
+BinarySearch,60000, 1270
+
+
+InsertionSort,70000, 93731
+
+BubbleSort,70000, 11238908
+
+SequentialSearch,70000, 31
+
+BinarySearch,70000, 1368
+
+
+InsertionSort,80000, 123150
+
+BubbleSort,80000, 14752363
+
+SequentialSearch,80000, 29
+
+BinarySearch,80000, 1341
+
+
+InsertionSort,90000, 157686
+
+BubbleSort,90000, 18766858
+
+SequentialSearch,90000, 32
+
+BinarySearch,90000, 1298
+
+
+InsertionSort,100000, 199596
+
+BubbleSort,100000, 23163292
+
+SequentialSearch,100000, 41
+
+BinarySearch,100000, 1354
+
+A complexidade do algoritmo é: O(n^2)
+A complexidade do algoritmo é: O(n^2)
+A complexidade do algoritmo é: O(n)
+A complexidade do algoritmo é: O(log n)
