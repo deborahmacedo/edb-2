@@ -23,21 +23,38 @@ void pooularVetorComValoresAleatorios(int arr[], int n, int min, int max) {
 
 
 int main(){
+
+    cout << "Deseja rodar o teste? (s/n): ";
+    char resposta;
+    cin >> resposta;
+
+    if(resposta != 's' && resposta != 'n'){
+        cout << "Resposta inválida. Por favor, digite 's' para sim ou 'n' para não." << endl;
+        return 1; // Encerra o programa com código de erro
+    } 
+    if(resposta == 's'){
+        cout <<"Adicione o algoritmo de teste no arquivo teste.cpp e recompile o programa." << endl;
+        cout <<"O programa foi feito para algoritmos de busca. Se quiser rodar outro ajuste a chamada da função." << endl;
+    }
     
     int array_tempo_insertion[10];
     int array_tempo_bubble[10];
     int array_tempo_busca_sequencial[10];
     int array_tempo_busca_binaria[10];
+    int array_tempo_teste[10];
 
     std::cout << "algoritmo,n,tempo" << std::endl;
         //POPULAR VETOR
         std::vector<int> tamanhos = {10000, 20000, 30000, 40000, 50000, 60000,70000, 80000, 90000, 100000};
+        std::vector<int> tamanhos1 = {100, 200, 300, 400, 500, 6000,7000, 8000, 9000, 10000};
        for(int j = 0; j < 10; ++j) {
 
         int tamanho = tamanhos[j]; // Tamanho do vetor
+        int tamanho1 = tamanhos1[j];
 
         int vetor[tamanho];
         pooularVetorComValoresAleatorios(vetor, tamanho, 1, 1000000); // Intervalo dos valores
+        int vetor2[tamanho1];
 
         std::vector<int> insertion_avarage_times;
         std::vector<int> bubble_avarage_times;
@@ -58,9 +75,9 @@ int main(){
 
             
             //BUBBLE SORT
-            pooularVetorComValoresAleatorios(vetor, tamanho, 1, 1000000);
+            pooularVetorComValoresAleatorios(vetor2, tamanho1, 1, 10000);
             auto start_bubble = std::chrono::high_resolution_clock::now();
-            BubbleSort(vetor, tamanho);
+            BubbleSort(vetor2, tamanho1);
             auto end_bubble = std::chrono::high_resolution_clock::now();
             auto duration_bubble = std::chrono::duration_cast<std::chrono::microseconds>(end_bubble - start_bubble);
             bubble_avarage_times.push_back(duration_bubble.count());
@@ -130,7 +147,7 @@ int main(){
 
         //std::cout << "---------------------------------------------------------------------------------------------------\n";
         std::cout << "\nInsertionSort," << tamanho << ", " << insertion_average / 10 << std::endl;
-        std::cout << "\nBubbleSort," << tamanho << ", " << bubble_average / 10 << std::endl;
+        std::cout << "\nBubbleSort," << tamanho1 << ", " << bubble_average / 10 << std::endl;
         std::cout << "\nSequentialSearch," << tamanho << ", " << busca_sequencial_average / 10 << std::endl;
         std::cout << "\nBinarySearch," <<  tamanho << ", " << busca_binaria_average / 10 << std::endl;
         if(resposta == 's'){
