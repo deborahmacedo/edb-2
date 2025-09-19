@@ -79,7 +79,7 @@ int main(){
             //int arr3[] = {2, 3, 4, 10, 40, 65, 34, 76, 54, 65, 99, 8, 5, 4, 3, 21};
             //int n3 = sizeof(arr3)/sizeof(arr3[0]);
             //std::cout << "---------------------------------------------------------------------------------------------------\n";   
-            int x = 9987;
+            int x = 555;
             //std ::cout << "\nStarting Sequential Search timing:..." << std::endl;
             auto start_busca_sequencial = std::chrono::high_resolution_clock::now();
             int result = BuscaSequencial(vetor, tamanho, x);
@@ -95,7 +95,7 @@ int main(){
             //int arr4[] = {2, 3, 4, 10, 40, 65, 34, 76, 54, 65, 99, 8, 5, 4, 3, 21};
             //int n4 = sizeof(arr4)/sizeof(arr4[0]);
             //std::cout << "---------------------------------------------------------------------------------------------------\n";
-            int y = 999;
+            int y = 1999;
             InsertionSort(vetor, tamanho); //ordenar 
             //std ::cout << "\nStarting Binary Search timing..." << std::endl;
             auto start_busca_binaria = std::chrono::high_resolution_clock::now();
