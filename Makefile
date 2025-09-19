@@ -11,7 +11,8 @@ SRCS = main.cpp \
        busca_binaria.cpp \
        busca_sequencial.cpp \
        insertionsort.cpp \
-	   comparar.cpp
+	   comparar.cpp \
+	   teste.cpp
 
 # Objetos correspondentes
 OBJS = $(SRCS:.cpp=.o)

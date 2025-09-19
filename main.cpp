@@ -7,6 +7,7 @@
 #include "busca_sequencial.hpp"
 #include "busca_binaria.hpp"
 #include "comparar.hpp"
+#include "teste.hpp"
 using namespace std;
 
 
@@ -22,15 +23,33 @@ void pooularVetorComValoresAleatorios(int arr[], int n, int min, int max) {
 
 
 int main(){
+
+    //Verificar se o usuário deseja testar outro algoritmo
+    char resposta;
+    cout << "Deseja testar algum outro algoritmo? (s/n): ";
+    cin >> resposta;
+
+    while (resposta != 'n' && resposta != 's')
+    {
+        cout << "Resposta inválida. Digite 's' para sim ou 'n' para não: ";
+        cin >> resposta;
+    }
+
+    if(resposta == 's'){
+        cout << "Insira o algoritmo a ser testado no arquivo teste.cpp. Caso já tenha feito isso, pressione enter." << endl;
+        cout << "Obs: o código foi implementado para testar algoritmos de ordenação. Se desejar testar outros tipos de algoritmos, será necessário modificar o construtor da função e a chamada no main." << endl;
+    }
     
+
     int array_tempo_insertion[6];
     int array_tempo_bubble[6];
     int array_tempo_busca_sequencial[6];
     int array_tempo_busca_binaria[6];
+    int array_tempo_teste[6];
 
     std::cout << "algoritmo,n,tempo_medio" << std::endl;
         //POPULAR VETOR
-        std::vector<int> tamanhos = {10000, 20000, 50000, 60000, 80000, 100000};
+        std::vector<int> tamanhos = {10000, 20000, 50000, 80000, 100000, 150000};
        for(int j = 0; j < 6; ++j) {
 
         int tamanho = tamanhos[j]; // Tamanho do vetor
@@ -42,10 +61,11 @@ int main(){
         std::vector<int> bubble_avarage_times;
         std::vector<int> busca_sequencial_avarage_times;
         std::vector<int> busca_binaria_avarage_times;
+        std::vector<int> teste_avarage_times;
 
         
         for(int i = 0; i < 5; ++i) { 
-
+            
             //INSERTION SORT
             auto start_insertion = std::chrono::high_resolution_clock::now();
             InsertionSort(vetor, tamanho);
@@ -54,7 +74,7 @@ int main(){
             insertion_avarage_times.push_back(duration_insertion.count());
 
 
-
+            
             //BUBBLE SORT
             pooularVetorComValoresAleatorios(vetor, tamanho, 1, 1000000);
             auto start_bubble = std::chrono::high_resolution_clock::now();
@@ -62,6 +82,7 @@ int main(){
             auto end_bubble = std::chrono::high_resolution_clock::now();
             auto duration_bubble = std::chrono::duration_cast<std::chrono::microseconds>(end_bubble - start_bubble);
             bubble_avarage_times.push_back(duration_bubble.count());
+            
 
 
 
@@ -81,40 +102,58 @@ int main(){
 
 
             // Busca binária
-            int y = std::uniform_int_distribution<>(1, 1000000)(gen);
-            int vetor_ordenado[tamanho];
-            std::copy(vetor, vetor + tamanho, vetor_ordenado); // Copia o vetor original
-            InsertionSort(vetor_ordenado, tamanho); // Ordena a cópia
-
-            int num_repeticoes = 1;
-            int result2;
+            int y = std::uniform_int_distribution<>(1, 1000000)(gen); // Número a ser buscado
             auto start_busca_binaria = std::chrono::high_resolution_clock::now();
-            for (int rep = 0; rep < num_repeticoes; ++rep) {
-                result2 = BuscaBinaria(vetor_ordenado, tamanho, y);
-            }
+            BuscaBinaria(vetor, tamanho, y);
             auto end_busca_binaria = std::chrono::high_resolution_clock::now();
             auto duration_busca_binaria = std::chrono::duration_cast<std::chrono::nanoseconds>(end_busca_binaria - start_busca_binaria);
+            busca_binaria_avarage_times.push_back(duration_busca_binaria.count());
 
-            busca_binaria_avarage_times.push_back(duration_busca_binaria.count() / num_repeticoes);
+
+
+            //Teste
+            if(resposta == 's'){
+                int tempot;
+                for(int i = 0; i < 5; i++){
+                pooularVetorComValoresAleatorios(vetor, tamanho, 1, 1000000);
+                auto start_teste = std::chrono::high_resolution_clock::now();
+                Teste(vetor, tamanho);
+                auto end_teste = std::chrono::high_resolution_clock::now();
+                auto duration_teste = std::chrono::duration_cast<std::chrono::microseconds>(end_teste - start_teste);
+                teste_avarage_times.push_back(duration_teste.count());
+                tempot += duration_teste.count();
+
+                }
+                teste_avarage_times.push_back(tempot/5);
+            }
+
+
         }
 
         auto insertion_average = 0;
         auto bubble_average = 0;
         auto busca_sequencial_average = 0; 
         auto busca_binaria_average = 0;
+        auto teste_average = 0;
 
         for(int i = 0; i < 5; ++i) { 
             insertion_average += insertion_avarage_times[i];
             bubble_average += bubble_avarage_times[i];
             busca_sequencial_average += busca_sequencial_avarage_times[i];
             busca_binaria_average += busca_binaria_avarage_times[i];
+            if(resposta == 's'){
+                teste_average += teste_avarage_times[i];
+            }
         }
 
         //std::cout << "---------------------------------------------------------------------------------------------------\n";
-        std::cout << "\nInsertionSort," << tamanho << ", " << insertion_average / 5 << std::endl;
-        std::cout << "\nBubbleSort," << tamanho << ", " << bubble_average / 5 << std::endl;
-        std::cout << "\nSequentialSearch," << tamanho << ", " << busca_sequencial_average / 5 << std::endl;
-        std::cout << "\nBinarySearch," <<  tamanho << ", " << busca_binaria_average / 5 << std::endl;
+        std::cout << "\nInsertionSort," << tamanho << ", " << insertion_average / 10 << std::endl;
+        std::cout << "\nBubbleSort," << tamanho << ", " << bubble_average / 10 << std::endl;
+        std::cout << "\nSequentialSearch," << tamanho << ", " << busca_sequencial_average / 10 << std::endl;
+        std::cout << "\nBinarySearch," <<  tamanho << ", " << busca_binaria_average / 10 << std::endl;
+        if(resposta == 's'){
+            std::cout << "\nTeste," <<  tamanho << ", " << teste_average / 10 << std::endl;
+        }
         std::cout << "\n"; 
         //std::cout << "\033[36mVetor com essa quantidade de elementos: \033[0m" << tamanhos[j] << std::endl;
 
@@ -122,11 +161,15 @@ int main(){
         array_tempo_bubble[j] = bubble_average / 5;
         array_tempo_busca_sequencial[j] = busca_sequencial_average / 5;
         array_tempo_busca_binaria[j] = busca_binaria_average / 5; 
+        array_tempo_teste[j] = teste_average / 5;
     }
     comparar(tamanhos.data(), array_tempo_insertion);
     comparar(tamanhos.data(), array_tempo_bubble);
     comparar(tamanhos.data(), array_tempo_busca_sequencial);
     comparar(tamanhos.data(), array_tempo_busca_binaria);
+    if(resposta == 's'){
+        comparar(tamanhos.data(), array_tempo_teste);
+    }
 
     return 0;
 }
