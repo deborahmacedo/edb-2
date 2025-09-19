@@ -10,7 +10,8 @@ SRCS = main.cpp \
        bubblesort.cpp \
        busca_binaria.cpp \
        busca_sequencial.cpp \
-       insertionsort.cpp
+       insertionsort.cpp \
+	   comparar.cpp
 
 # Objetos correspondentes
 OBJS = $(SRCS:.cpp=.o)
